@@ -31,20 +31,16 @@ export class TasksService {
   //   }
   //   return tasks;
   // }
-  async getTaskById(id: FindOneOptions<Task>): Promise<Task> {
-    const found = await this.taskRepository.findOne(id);
+  async getTaskById(id: string): Promise<Task> {
+    console.log('id: ', id);
+    const found = await this.taskRepository.findOne({ where: { id } });
+    console.log('is found: ', found);
     if (!found) {
       throw new NotFoundException(`Task with ID '${id}' not found.`);
     }
     return found;
   }
-  // getTaskById(id: string): Task {
-  //   const found = this.tasks.find((task) => task.id === id);
-  //   if (!found) {
-  //     throw new NotFoundException(`Task with ID '${id}' not found.`);
-  //   }
-  //   return found;
-  // }
+
   // createTask(createTaskDTO: CreateTaskDto): Task {
   //   const { title, description } = createTaskDTO;
   //   const task: Task = {
