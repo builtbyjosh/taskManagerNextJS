@@ -7,7 +7,7 @@ import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 @EntityRepository(Task)
 export class TasksRepository extends Repository<Task> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async getTasks(filterDto: GetTasksFilterDto): Promise<Task[]>{
+  async getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
     const query = this.createQueryBuilder('task');
     const tasks = await query.getMany();
     return tasks;
